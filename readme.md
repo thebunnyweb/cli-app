@@ -12,8 +12,7 @@ Small cli app verison allows to generate js file with specified units
 - **Yarn** or **npm i** 
 - **node main.js compile**
 
-## Author
-
-https://www.npmjs.com/~bunnyweb
-https://www.instagram.com/bunnyissunny/
-https://github.com/thebunnyweb
+## Author Details
+#### [Npm](https://www.npmjs.com/~bunnyweb)
+#### [Instagram~Bunnyissunny](https://www.instagram.com/bunnyissunny/)
+#### [Github](https://github.com/thebunnyweb)
