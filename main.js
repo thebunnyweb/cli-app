@@ -1,10 +1,10 @@
+// Imports
 const program = require('commander');
 const inquirer = require('inquirer');
 const chalk = require('chalk');
 const figlet = require('figlet');
 const fs = require('fs');
-
-const filename = 'Unit-config.js';
+var filename = 'Unit-config.js';
 
 let questions = [
   {
@@ -80,12 +80,12 @@ let questions = [
   }
 ];
 
-
-
+// Commander JS
 program
   .command('compile')
   .description('Working...')
   .action(() => {
+    // Inquirer JS Question Synchronous 
     inquirer.prompt(questions).then(answer => {
 
       if (answer.filename == "") {
@@ -100,6 +100,7 @@ program
         unitsArr.push(splitElem[splitElem.length - 1]);
       }, this);
 
+      //  Promise to write units
       Promise.resolve(
         unitsArr.forEach(function (element) {
           let importStr = `import unit${element} from Unit_${element};\n`;
@@ -114,6 +115,8 @@ program
             let exportStatement = `\n\nexport default {\n`;
             let exportStatementEnd = `};`;
             fs.appendFile(`dist/${answer.filename}.js`, exportStatement, () => { });
+
+            //  Promise to Export Default
             Promise.resolve(answer.units.forEach(function (element) {
               let unitExportStatement = `\t${element},\n`;
               fs.appendFile(`dist/${answer.filename}.js`, unitExportStatement, () => { });
@@ -133,4 +136,12 @@ program
     });
   });
 
+
+// Get Params from cli terminal.
 program.parse(process.argv);
+
+
+// Promise Error Handling
+process.on('unhandledRejection', (err)=>{
+  console.error(chalk.bold.red(err))
+})
